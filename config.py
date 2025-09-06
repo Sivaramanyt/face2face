@@ -6,9 +6,9 @@ load_dotenv()
 
 class Config:
     # Telegram Bot Config
-    BOT_TOKEN = os.getenv("BOT_TOKEN")
-    API_ID = int(os.getenv("API_ID", "0"))
-    API_HASH = os.getenv("API_HASH")
+    BOT_TOKEN = os.getenv("8261755198:AAFikWiiAzIuRN_p8UmAtWslhhy18ia2TBg")
+    API_ID = int(os.getenv("API_ID", "29542645"))
+    API_HASH = os.getenv("06e505b8418565356ae79365df5d69e0")
     
     # Face2Face Config
     GPU_DEVICE = int(os.getenv("GPU_DEVICE", "-1"))
