@@ -1,10 +1,9 @@
-# The error "unknown instruction: fixed_run_command" indicates misuse in the Dockerfile.
-# 'fixed_run_command' is a Python variable name from the previous explanation, not a Dockerfile command.
+FROM python:3.9-slim
 
-# Fix: You should replace the incorrect line with actual RUN command statements in your Dockerfile.
+# Set working directory
+WORKDIR /app
 
-# Correct Dockerfile snippet for installing dependencies:
-correct_dockerfile_snippet = '''\
+# Install system dependencies required for Face2Face
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     libglib2.0-0 \
@@ -18,5 +17,26 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     && rm -rf /var/lib/apt/lists/*
-'''
-correct_dockerfile_snippet
+
+# Copy requirements first (for better caching)
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Create temp directory for face swap processing
+RUN mkdir -p temp
+
+# Expose port 8080 (your Koyeb port)
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Start the bot
+CMD ["python", "bot.py"]
