@@ -1,12 +1,10 @@
-# The error message indicates build failure due to missing 'g++' compiler which is required for building 'insightface' wheel.
+# The error "unknown instruction: fixed_run_command" indicates misuse in the Dockerfile.
+# 'fixed_run_command' is a Python variable name from the previous explanation, not a Dockerfile command.
 
-# We should install 'g++' and 'build-essential' packages in the Dockerfile before pip install.
+# Fix: You should replace the incorrect line with actual RUN command statements in your Dockerfile.
 
-# Suggested fix in Dockerfile RUN command:
-# Add g++ and build-essential package installation along with apt-get update
-
-# Here is the fixed Dockerfile RUN command snippet:
-fixed_run_command = '''\
+# Correct Dockerfile snippet for installing dependencies:
+correct_dockerfile_snippet = '''\
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     libglib2.0-0 \
@@ -21,4 +19,4 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 '''
-fixed_run_command
+correct_dockerfile_snippet
