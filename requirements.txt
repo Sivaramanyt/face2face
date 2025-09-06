@@ -1,8 +1,3 @@
-# The error indicates 'onnxruntime' module is missing.
-# You need to add 'onnxruntime' to your requirements.txt to fix this.
-
-# Here's a correct requirements.txt content including onnxruntime
-requirements_txt = '''
 pyrogram==2.0.106
 TgCrypto==1.2.5
 insightface==0.7.3
@@ -12,6 +7,3 @@ numpy==1.24.3
 python-dotenv==1.0.0
 Pillow==10.0.0
 requests==2.31.0
-'''
-
-requirements_txt
