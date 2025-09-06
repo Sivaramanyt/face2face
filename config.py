@@ -17,7 +17,7 @@ class Config:
     
     # Deployment Config
     WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-    PORT = int(os.getenv("PORT", "8000"))
+    PORT = int(os.getenv("PORT", "8080"))
     
     # Validate required variables
     @classmethod
