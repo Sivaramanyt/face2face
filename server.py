@@ -10,13 +10,12 @@ flask_app = Flask(__name__)
 def webhook():
     """Handle webhook updates"""
     json_data = request.get_json()
-    # Process update (implementation depends on deployment method)
     return "OK"
 
 @flask_app.route('/health')
 def health_check():
     """Health check endpoint"""
-    return {"status": "healthy", "bot": "face_swap_bot"}
+    return {"status": "healthy", "bot": "face_swap_bot", "port": Config.PORT}
 
 def run_telegram_bot():
     """Run Telegram bot in separate thread"""
@@ -28,9 +27,10 @@ if __name__ == "__main__":
     bot_thread.daemon = True
     bot_thread.start()
     
-    # Start Flask server
+    # Start Flask server on port 8080
     flask_app.run(
         host="0.0.0.0", 
-        port=Config.PORT,
+        port=Config.PORT,  # This will be 8080
         debug=False
     )
+    
